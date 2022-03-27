@@ -3,14 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CVR_reader_WPF"
+        xmlns:local="clr-namespace:CVR_reader_WPF" xmlns:viewmodel="clr-namespace:CVR_reader_WPF.MVVM.ViewModel"
         mc:Ignorable="d"
         Height="650" Width="1200"
         Background = "#36393F"
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
+
+    <Window.DataContext>
+        <viewmodel:MainViewModel></viewmodel:MainViewModel>
+    </Window.DataContext>
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.ColumnSpan="2"
+                x:Name="Title_Border"
+                Background="#252525">
+
+            <Grid HorizontalAlignment="Stretch">
+                <Label Content="Funny API"
+                       Foreground="Gray"
+                       FontWeight="SemiBold"/>
+
+                <StackPanel HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+
+                    <Button Width="20" Height="20" Content="X" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold"/>
+
+                </StackPanel>
+            </Grid>
+
+        </Border>
 
     </Grid>
 </Window>
