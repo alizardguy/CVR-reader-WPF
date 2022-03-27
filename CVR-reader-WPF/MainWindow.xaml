@@ -64,9 +64,19 @@
                    Foreground="White"
                    BorderThickness="0"
                    Margin="0,0,0,0" HorizontalAlignment="Center"
-                   >Main</TextBox>
+                   >N/A registered users</TextBox>
+
+            <StackPanel Grid.Row="2">
+                <Button x:Name="Home" Content="Home" Click="Home_Click"/>
+                <Button x:Name="LookUpPageButton" Content="Lookup" Click="LookUpPageButton_Click"/>
+                <Button x:Name="SettingsPageButton" Content="Settings" Click="SettingsPageButton_Click"/>
+            </StackPanel>
 
         </Grid>
+
+        <Frame x:Name="MainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+
+
 
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using CVR_reader_WPF.MVVM.Pages;
 using Newtonsoft.Json.Linq;
 
 
@@ -16,6 +17,7 @@ namespace CVR_reader_WPF
         {
             InitializeComponent();
             loadLiveDataAsync();
+            MainFrame.Content = new HomePage();
         }
 
         private void Title_Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -56,6 +58,22 @@ namespace CVR_reader_WPF
             RegisteredAccounts.Text = liveAccounts + " registered users";
 
 
+        }
+
+    //navigation buttons
+        private void LookUpPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new UserLookup();
+        }
+
+        private void SettingsPageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Settings();
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new HomePage();
         }
     }
 }
