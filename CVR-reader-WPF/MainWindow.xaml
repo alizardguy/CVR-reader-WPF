@@ -67,9 +67,9 @@
                    >N/A registered users</TextBox>
 
             <StackPanel Grid.Row="2">
-                <Button x:Name="Home" Content="Home" Click="Home_Click"/>
-                <Button x:Name="LookUpPageButton" Content="Lookup" Click="LookUpPageButton_Click"/>
-                <Button x:Name="SettingsPageButton" Content="Settings" Click="SettingsPageButton_Click"/>
+                <Button x:Name="Home" Content="Home" Click="Home_Click" Background="#3c3e45" Foreground="White" BorderThickness="0"/>
+                <Button x:Name="LookUpPageButton" Content="Lookup" Click="LookUpPageButton_Click" Background="#3c3e45" Foreground="White" BorderThickness="0"/>
+                <Button x:Name="SettingsPageButton" Content="Settings" Click="SettingsPageButton_Click" Background="#3c3e45" Foreground="White" BorderThickness="0"/>
             </StackPanel>
 
         </Grid>
