@@ -24,5 +24,30 @@ namespace CVR_reader_WPF
         {
             InitializeComponent();
         }
+
+        private void Title_Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
+        }
+
+    //Main app top buttons
+        //minimize button
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = System.Windows.WindowState.Minimized;
+        }
+
+        //toggle maximize button
+        private void WindowState_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.WindowState = Application.Current.MainWindow.WindowState == System.Windows.WindowState.Maximized ? System.Windows.WindowState.Normal : System.Windows.WindowState.Maximized;
+        }
+
+        //close button
+        private void closeApp_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

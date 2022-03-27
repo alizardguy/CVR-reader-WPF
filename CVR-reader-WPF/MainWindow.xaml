@@ -29,6 +29,7 @@
 
         <Border Grid.ColumnSpan="2"
                 x:Name="Title_Border"
+                MouseDown="Title_Border_MouseDown"
                 Background="#252525">
 
             <Grid HorizontalAlignment="Stretch">
@@ -39,7 +40,9 @@
                 <StackPanel HorizontalAlignment="Right"
                             Orientation="Horizontal">
 
-                    <Button Width="20" Height="20" Content="X" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold"/>
+                    <Button x:Name="Minimize" Width="20" Height="20" Content="−" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold" Click="Minimize_Click"/>
+                    <Button x:Name="WindowState" Width="20" Height="20" Content="▢" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold" Click="WindowState_Click"/>
+                    <Button x:Name="closeApp" Width="20" Height="20" Content="✕" Background="Transparent" BorderThickness="0" Foreground="Gray" FontWeight="Bold" Click="closeApp_Click"/>
 
                 </StackPanel>
             </Grid>
