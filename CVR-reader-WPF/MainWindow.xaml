@@ -66,12 +66,11 @@
                    Margin="0,0,0,0" HorizontalAlignment="Center"
                    >N/A registered users</TextBox>
 
-            <StackPanel Grid.Row="2">
-                <Button x:Name="Home" Content="Home" Click="Home_Click" Background="#3c3e45" Foreground="White" BorderThickness="0"/>
-                <Button x:Name="LookUpPageButton" Content="Lookup" Click="LookUpPageButton_Click" Background="#3c3e45" Foreground="White" BorderThickness="0"/>
-                <Button x:Name="SettingsPageButton" Content="Settings" Click="SettingsPageButton_Click" Background="#3c3e45" Foreground="White" BorderThickness="0"/>
+            <StackPanel Grid.Row="1">
+                <Button x:Name="Home" Content="Home" Click="Home_Click" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35"/>
+                <Button x:Name="LookUpPageButton" Content="Lookup" Click="LookUpPageButton_Click" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35"/>
+                <Button x:Name="SettingsPageButton" Content="Settings" Click="SettingsPageButton_Click" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35"/>
             </StackPanel>
-
         </Grid>
 
         <Frame x:Name="MainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
