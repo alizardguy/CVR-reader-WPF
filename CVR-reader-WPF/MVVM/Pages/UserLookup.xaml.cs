@@ -64,13 +64,13 @@ namespace CVR_reader_WPF.MVVM.Pages
             SearchedNickname.Text = "(" + UserDataBag["nickname"].ToString() + ")";
             SearchedPronouns.Text = UserDataBag["pronouns"].ToString();
 
-            if (UserDataBag["bio"] != null)
+            if ((UserDataBag["bio"] != null) && (UserDataBag["bio"].ToString() != ""))
             {
                 SearchedBio.Text =  UserDataBag["bio"].ToString();
             }
             else
             {
-                SearchedBio.Text = "No bio set";
+                SearchedBio.Text = "No bio currently set.";
             }
 
         }
