@@ -33,7 +33,7 @@
                 Background="#252525">
 
             <Grid HorizontalAlignment="Stretch">
-                <Label Content="Funny API"
+                <Label Content="Zard's CVR API Client"
                        Foreground="Gray"
                        FontWeight="SemiBold"/>
 
