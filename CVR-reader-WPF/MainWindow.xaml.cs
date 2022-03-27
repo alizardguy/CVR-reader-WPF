@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Newtonsoft.Json.Linq;
+
 
 namespace CVR_reader_WPF
 {
@@ -23,6 +15,7 @@ namespace CVR_reader_WPF
         public MainWindow()
         {
             InitializeComponent();
+            loadLiveDataAsync();
         }
 
         private void Title_Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,6 +41,21 @@ namespace CVR_reader_WPF
         private void closeApp_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+    //load live data
+        private async Task loadLiveDataAsync()
+        {
+            //setup client
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
+
+            //get amount of registered users from CVR api
+            var liveAccounts = await client.GetStringAsync("https://api.compensationvr.tk/api/analytics/account-count");
+
+            RegisteredAccounts.Text = liveAccounts + " registered users";
+
+
         }
     }
 }
