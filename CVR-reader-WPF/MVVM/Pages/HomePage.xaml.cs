@@ -34,10 +34,17 @@ namespace CVR_reader_WPF.MVVM.Pages
                 string? firstItem = parsedPhotoFeed[0]["_id"].ToString();
 
                 FeedIntroPhoto.Source = new BitmapImage(new Uri("https://api.compensationvr.tk/img/" + firstItem));
+
+                var takenByInfoRaw = parsedPhotoFeed[0]["takenBy"].ToString();
+                JObject takenObject = JObject.Parse(takenByInfoRaw);
+
+
+
+                FeedIntroPhotoAuthor.Text = "from @" + takenObject["username"].ToString();
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("error loading cover photos: " + e.Message);
             }
         }
     }
