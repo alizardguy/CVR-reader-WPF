@@ -1,19 +1,10 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CVR_reader_WPF.MVVM.Pages
 {
@@ -46,10 +37,8 @@ namespace CVR_reader_WPF.MVVM.Pages
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
 
-            //get userID
+            //get and parse userID
             var rawUserIDlookup = await client.GetStringAsync("https://api.compensationvr.tk/api/accounts/" + SearchID + "/id");
-
-            //parse out userID
             JObject UserIDBag = JObject.Parse(rawUserIDlookup);
 
 
@@ -109,7 +98,7 @@ namespace CVR_reader_WPF.MVVM.Pages
                 JObject UserDataBag = JObject.Parse(rawUserData);
 
                 SearchedUsername.Text = UserDataBag["username"].ToString();
-                SearchedNickname.Text = $"({UserDataBag["nickname"].ToString()})";
+                SearchedNickname.Text = $"({UserDataBag["nickname"]})";
                 SearchedPronouns.Text = UserDataBag["pronouns"].ToString();
 
                 if (string.IsNullOrEmpty(UserDataBag["bio"].ToString()))

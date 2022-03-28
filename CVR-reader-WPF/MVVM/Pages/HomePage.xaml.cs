@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,16 @@ namespace CVR_reader_WPF.MVVM.Pages
         public HomePage()
         {
             InitializeComponent();
+        }
+
+        private async Task loadFeedImagesAsync()
+        {
+            //setup client
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
+
+            //get feed
+            var rawUserIDlookup = await client.GetStringAsync("https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse");
         }
     }
 }
