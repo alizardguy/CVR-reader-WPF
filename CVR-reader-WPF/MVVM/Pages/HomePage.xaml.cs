@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Newtonsoft.Json.Linq;
 
 namespace CVR_reader_WPF.MVVM.Pages
 {
@@ -24,6 +16,7 @@ namespace CVR_reader_WPF.MVVM.Pages
         public HomePage()
         {
             InitializeComponent();
+            loadFeedImagesAsync();
         }
 
         private async Task loadFeedImagesAsync()
@@ -32,8 +25,20 @@ namespace CVR_reader_WPF.MVVM.Pages
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
 
-            //get feed
-            var rawUserIDlookup = await client.GetStringAsync("https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse");
+            try
+            {
+                //get feed
+                var rawPhotoFeed = await client.GetStringAsync("https://api.compensationvr.tk/api/social/imgfeed?offset=0&count=5&reverse");
+
+                JArray parsedPhotoFeed = JArray.Parse(rawPhotoFeed);
+                string? firstItem = parsedPhotoFeed[0]["_id"].ToString();
+
+                FeedIntroPhoto.Source = new BitmapImage(new Uri("https://api.compensationvr.tk/img/" + firstItem));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }

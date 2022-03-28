@@ -19,7 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="230"/>
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
@@ -27,6 +27,8 @@
         <Label Content="Welcome Back"
                Grid.Row="1" Grid.Column="1" Margin="3,5,3,5" Foreground="White" FontWeight="Bold" FontSize="24"/>
         
-        <Image Grid.Row="2" Grid.Column="1" Height="100" Width="100"/>
+        <Image x:Name="FeedIntroPhoto" Grid.Row="2" Grid.Column="1" Height="220" Width="450"
+               Source="https://api.compensationvr.tk/img/3"/>
+
     </Grid>
 </Page>
