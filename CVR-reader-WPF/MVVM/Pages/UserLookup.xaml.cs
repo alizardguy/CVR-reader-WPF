@@ -69,7 +69,7 @@ namespace CVR_reader_WPF.MVVM.Pages
 
         //search for random user
         private void RandomUserSimpleSearch_Click(object sender, RoutedEventArgs e)
-        {
+        {   
             //setup client
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
@@ -77,11 +77,22 @@ namespace CVR_reader_WPF.MVVM.Pages
             //get amount of registered users
             var accountsRegisteredAmount = client.GetStringAsync("https://api.compensationvr.tk/api/analytics/account-count");
 
-            //get random userID
-            Random rnd = new Random();
-            int searchedID = rnd.Next(1, Convert.ToInt32(accountsRegisteredAmount.Result));
+            try
+            {
+                //get random userID
+                Random rnd = new Random();
 
-            basicSearchAsync(searchedID);
+                int searchedID = rnd.Next(1, Convert.ToInt32(accountsRegisteredAmount.Result));
+
+                basicSearchAsync(searchedID);
+            }
+            catch
+            {
+                //too many request error
+                MessageBox.Show("please wait a few seconds before searching again");
+                return;
+
+            }
         }
 
         //basic search
@@ -101,7 +112,7 @@ namespace CVR_reader_WPF.MVVM.Pages
                 SearchedNickname.Text = "(" + UserDataBag["nickname"].ToString() + ")";
                 SearchedPronouns.Text = UserDataBag["pronouns"].ToString();
 
-                if ((UserDataBag["bio"] != null) && (UserDataBag["bio"].ToString() != ""))
+                if (string.IsNullOrEmpty(UserDataBag["bio"].ToString()))
                 {
                     SearchedBio.Text = UserDataBag["bio"].ToString();
                 }

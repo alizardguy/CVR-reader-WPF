@@ -38,5 +38,6 @@
             <Button x:Name="RandomUserSimpleSearch" Content="Random User" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35" MaxHeight="40" Click="RandomUserSimpleSearch_Click"/>
         </StackPanel>
         
+
     </Grid>
 </Page>
