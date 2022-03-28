@@ -75,5 +75,10 @@ namespace CVR_reader_WPF
         {
             MainFrame.Content = new HomePage();
         }
+
+        private void StatsForNerdsButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Stats();
+        }
     }
 }
