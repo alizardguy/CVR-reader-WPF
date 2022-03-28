@@ -57,14 +57,13 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <TextBox x:Name="RegisteredAccounts" 
+            <TextBlock x:Name="RegisteredAccounts" 
                    VerticalAlignment="Center"
                    FontWeight="Medium"
                    Background="Transparent"
                    Foreground="White"
-                   BorderThickness="0"
                    Margin="0,0,0,0" HorizontalAlignment="Center"
-                   >N/A registered users</TextBox>
+                   >N/A registered users</TextBlock>
 
             <StackPanel Grid.Row="1">
                 <Button x:Name="Home" Content="Home" Click="Home_Click" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35"/>
