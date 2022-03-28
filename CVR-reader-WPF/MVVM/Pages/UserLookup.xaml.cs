@@ -109,7 +109,7 @@ namespace CVR_reader_WPF.MVVM.Pages
                 JObject UserDataBag = JObject.Parse(rawUserData);
 
                 SearchedUsername.Text = UserDataBag["username"].ToString();
-                SearchedNickname.Text = "(" + UserDataBag["nickname"].ToString() + ")";
+                SearchedNickname.Text = $"({UserDataBag["nickname"].ToString()})";
                 SearchedPronouns.Text = UserDataBag["pronouns"].ToString();
 
                 if (string.IsNullOrEmpty(UserDataBag["bio"].ToString()))
