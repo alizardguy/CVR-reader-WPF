@@ -13,6 +13,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition Width="60"/>
         </Grid.ColumnDefinitions>
 
@@ -23,5 +25,9 @@
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="2" Grid.Row="2">
+            <Button Content="Generic Bool Setting" Margin="0,5,0,5" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="30"/>
+        </StackPanel>
     </Grid>
 </Page>

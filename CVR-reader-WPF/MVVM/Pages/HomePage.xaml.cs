@@ -47,5 +47,55 @@ namespace CVR_reader_WPF.MVVM.Pages
                 MessageBox.Show("error loading cover photos: " + e.Message);
             }
         }
+
+    //search buttons
+        //Previous Image
+        private void PreviousImage_Click(object sender, RoutedEventArgs e)
+        {
+            int loadID;
+            try
+            {
+                loadID = Int32.Parse(FeedIntroPhoto.Source.ToString().Remove(0, 34));
+                loadID--;
+
+                if (loadID < 2)
+                {
+                    loadID = 2;
+                }
+            }
+            catch
+            {   //if theres no image loaded
+                loadID = 2;
+            }
+            
+            string sentloadID = loadID.ToString();
+
+            loadExactPhotoID(sentloadID);
+        }
+
+        //latest image button
+        private void LatestImage_Click(object sender, RoutedEventArgs e)
+        {
+            loadFeedImagesAsync();
+        }
+
+        //load image from ID from API
+        private async Task loadExactPhotoID(string sentloadID)
+        {
+            //setup client
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
+            
+            try
+            {
+                FeedIntroPhoto.Source = new BitmapImage(new Uri("https://api.compensationvr.tk/img/" + sentloadID));
+                FeedIntroPhotoAuthor.Text = "";
+            }
+            catch
+            {
+                MessageBox.Show("error loading exact photo id");
+            }
+        }
+
     }
 }
