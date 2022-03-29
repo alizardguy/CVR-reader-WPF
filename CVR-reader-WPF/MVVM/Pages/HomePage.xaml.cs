@@ -13,6 +13,8 @@ namespace CVR_reader_WPF.MVVM.Pages
     /// </summary>
     public partial class HomePage : Page
     {
+        private int currentImageOffsetID = 0;
+
         public HomePage()
         {
             InitializeComponent();
@@ -38,6 +40,7 @@ namespace CVR_reader_WPF.MVVM.Pages
                 var takenByInfoRaw = parsedPhotoFeed[0]["takenBy"].ToString();
                 JObject takenObject = JObject.Parse(takenByInfoRaw);
 
+                currentImageOffsetID = 0; //reset offset index
 
 
                 FeedIntroPhotoAuthor.Text = "from @" + takenObject["username"].ToString();
@@ -49,8 +52,8 @@ namespace CVR_reader_WPF.MVVM.Pages
         }
 
     //search buttons
-        //Previous Image
-        private void PreviousImage_Click(object sender, RoutedEventArgs e)
+        // Jank Previous Image
+        private void JankPreviousImage_Click(object sender, RoutedEventArgs e)
         {
             int loadID;
             try
@@ -72,6 +75,73 @@ namespace CVR_reader_WPF.MVVM.Pages
 
             loadExactPhotoID(sentloadID);
         }
+
+        
+    //back forth buttons 
+        //Previous Image
+        private async Task AsyncPreviousImage_Click()
+        {
+            //setup client
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
+
+            try
+            {
+                //get feed
+                currentImageOffsetID++; //boot up offset
+                var rawPhotoFeed = await client.GetStringAsync("https://api.compensationvr.tk/api/social/imgfeed?offset="+ currentImageOffsetID + "&count=5&reverse");
+
+                JArray parsedPhotoFeed = JArray.Parse(rawPhotoFeed);
+                string? firstItem = parsedPhotoFeed[0]["_id"].ToString();
+
+                FeedIntroPhoto.Source = new BitmapImage(new Uri("https://api.compensationvr.tk/img/" + firstItem));
+
+                var takenByInfoRaw = parsedPhotoFeed[0]["takenBy"].ToString();
+                JObject takenObject = JObject.Parse(takenByInfoRaw);
+
+
+                FeedIntroPhotoAuthor.Text = "from @" + takenObject["username"].ToString();
+            }
+            catch
+            {
+                MessageBox.Show("error loading next image");
+            }
+        }
+
+        //Next Image
+        private async Task AsyncNextImage_Click()
+        {
+            //setup client
+            using var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
+
+            if (currentImageOffsetID > 0)
+            {
+                try
+                {
+
+                    //get feed
+                    currentImageOffsetID--; //boot up offset
+                    var rawPhotoFeed = await client.GetStringAsync("https://api.compensationvr.tk/api/social/imgfeed?offset=" + currentImageOffsetID + "&count=5&reverse");
+
+                    JArray parsedPhotoFeed = JArray.Parse(rawPhotoFeed);
+                    string? firstItem = parsedPhotoFeed[0]["_id"].ToString();
+
+                    FeedIntroPhoto.Source = new BitmapImage(new Uri("https://api.compensationvr.tk/img/" + firstItem));
+
+                    var takenByInfoRaw = parsedPhotoFeed[0]["takenBy"].ToString();
+                    JObject takenObject = JObject.Parse(takenByInfoRaw);
+
+
+                    FeedIntroPhotoAuthor.Text = "from @" + takenObject["username"].ToString();
+                }
+                catch
+                {
+                    MessageBox.Show("error loading next image");
+                }
+            }
+        }
+
 
         //latest image button
         private void LatestImage_Click(object sender, RoutedEventArgs e)
@@ -97,5 +167,14 @@ namespace CVR_reader_WPF.MVVM.Pages
             }
         }
 
+        private void PreviousImage_Click(object sender, RoutedEventArgs e)
+        {
+            AsyncPreviousImage_Click();
+        }
+
+        private void NewerImage_Click(object sender, RoutedEventArgs e)
+        {
+            AsyncNextImage_Click();
+        }
     }
 }
