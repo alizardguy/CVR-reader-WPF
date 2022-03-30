@@ -132,7 +132,6 @@ namespace CVR_reader_WPF.MVVM.Pages
                     var takenByInfoRaw = parsedPhotoFeed[0]["takenBy"].ToString();
                     JObject takenObject = JObject.Parse(takenByInfoRaw);
 
-
                     FeedIntroPhotoAuthor.Text = "from @" + takenObject["username"].ToString();
                 }
                 catch

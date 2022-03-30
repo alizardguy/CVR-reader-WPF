@@ -35,8 +35,8 @@
 
         <StackPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="5,10,5,10" Width="200">
             <Label Content="quick search" Grid.Row="0" Grid.Column="1" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" FontSize="18" FontFamily="Sitka Display"/>
-            <Button x:Name="NewerImage" Content="Next Image" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35" MaxHeight="40" Click="NewerImage_Click"/>
-            <Button x:Name="PreviousImage" Content="Previous Image" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35" MaxHeight="40" Click="PreviousImage_Click"/>
+            <Button x:Name="PreviousImage" Content="⟶" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35" MaxHeight="40" Click="PreviousImage_Click"/>
+            <Button x:Name="NewerImage" Content="⟵" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35" MaxHeight="40" Click="NewerImage_Click"/>
             <Button x:Name="LatestImage" Content="Latest Image" Background="#3c3e45" Foreground="White" BorderThickness="0.5" Height="35" MaxHeight="40" Click="LatestImage_Click"/>
         </StackPanel>
     </Grid>
