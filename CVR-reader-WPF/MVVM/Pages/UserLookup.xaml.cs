@@ -37,17 +37,34 @@ namespace CVR_reader_WPF.MVVM.Pages
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
 
-            //get and parse userID
-            var rawUserIDlookup = await client.GetStringAsync("https://api.compensationvr.tk/api/accounts/" + SearchID + "/id");
-            JObject UserIDBag = JObject.Parse(rawUserIDlookup);
+
+            try
+            {
+                //get and parse userID
+                var rawUserIDlookup = await client.GetStringAsync("https://api.compensationvr.tk/api/accounts/" + SearchID + "/id");
+                JObject UserIDBag = JObject.Parse(rawUserIDlookup);
 
 
-            //convert searched username to numberic id
-            var parsedUserID = UserIDBag["id"].ToString();
+                //convert searched username to numberic id
+                var parsedUserID = UserIDBag["id"].ToString();
 
-            var searchedID = parsedUserID;
-            
-            basicSearchAsync(Convert.ToInt32(searchedID));
+
+                var searchedID = parsedUserID;
+
+                basicSearchAsync(Convert.ToInt32(searchedID));
+            }
+            catch
+            {
+                var rawAltUserIDlookup = await client.GetStringAsync("https://api.compensationvr.tk/api/accounts/search?type=username&case_sensitive=false&query=" + SearchID);
+                JArray AltUserIDBag = JArray.Parse(rawAltUserIDlookup);
+
+                string tryInstead = await client.GetStringAsync("https://api.compensationvr.tk/api/accounts/" + AltUserIDBag[0].ToString() + "/public"); //try instead
+                JObject tryDataBag = JObject.Parse(tryInstead);
+
+                MessageBox.Show(SearchID + " not found, showing closest result: " + tryDataBag["username"].ToString()); //error box
+
+                basicSearchAsync(Convert.ToInt32(AltUserIDBag[0].ToString()));
+            }
 
         }
 
@@ -111,7 +128,8 @@ namespace CVR_reader_WPF.MVVM.Pages
                 }
             }
             catch{
-                MessageBox.Show("No user found with that ID or connection error");
+                MessageBox.Show("No user found with that ID or connection error"); //error message
+
                 SearchedUsername.Text = "No user found";
             }
         }
