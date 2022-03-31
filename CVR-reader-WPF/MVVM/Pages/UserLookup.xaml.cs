@@ -114,7 +114,7 @@ namespace CVR_reader_WPF.MVVM.Pages
                 var rawUserData = await client.GetStringAsync("https://api.compensationvr.tk/api/accounts/" + searchedID + "/public");
                 JObject UserDataBag = JObject.Parse(rawUserData);
 
-                SearchedUsername.Text = $"(@{UserDataBag["username"]})";
+                SearchedUsername.Text = $"@{UserDataBag["username"]}";
                 SearchedNickname.Text = $"{UserDataBag["nickname"]}";
                 SearchedPronouns.Text = UserDataBag["pronouns"].ToString();
 
