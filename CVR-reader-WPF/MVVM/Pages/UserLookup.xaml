@@ -27,8 +27,8 @@
         <TextBox x:Name="UserLookupBasic" Grid.Column="1" Grid.Row="1" Background="#3c3e42" FontSize="20" TextAlignment="Center" Foreground="White" BorderThickness="0.5" KeyDown="OnSearchKeyDownHandler" Margin="0,1,0,1"/>
 
         <StackPanel x:Name="UserInfo" Grid.Column="1" Grid.Row="2" Margin="0.1,2,0.1,2">
-            <TextBlock x:Name="SearchedUsername" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center">Username</TextBlock>
-            <TextBlock x:Name="SearchedNickname" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Center">(nickname)</TextBlock>
+            <TextBlock x:Name="SearchedNickname" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center">Username</TextBlock>
+            <TextBlock x:Name="SearchedUsername" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Center">(nickname)</TextBlock>
             <TextBlock x:Name="SearchedPronouns" Foreground="Gray" FontWeight="Bold" HorizontalAlignment="Center" FontSize="7">N/A</TextBlock>
             <TextBlock x:Name="SearchedBio" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="1,3,1,3" TextAlignment="Center" TextWrapping="Wrap">User bio</TextBlock>
         </StackPanel>
