@@ -120,11 +120,11 @@ namespace CVR_reader_WPF.MVVM.Pages
 
                 if (string.IsNullOrEmpty(UserDataBag["bio"].ToString()))
                 {
-                    SearchedBio.Text = UserDataBag["bio"].ToString();
+                    SearchedBio.Text = "No bio currently set.";
                 }
                 else
                 {
-                    SearchedBio.Text = "No bio currently set.";
+                    SearchedBio.Text = UserDataBag["bio"].ToString();
                 }
             }
             catch{
